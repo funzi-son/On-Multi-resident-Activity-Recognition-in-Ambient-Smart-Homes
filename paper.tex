@@ -1,0 +1,819 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{graphicx}
+\usepackage{url}
+
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{caption,subcaption}
+\captionsetup{compatibility=false}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multirow}
+\usepackage{slashbox}
+\usepackage{comment}
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\abs}[0]{
+  \text{abs}
+}
+\newcommand{\sign}[0]{
+  \text{sign}
+}
+\newcommand{\lif}[0]{
+  \leftarrow
+}
+\newcommand{\vt}[1]{
+\mathbf{#1}
+}
+\newcommand{\fn}[1]{
+{\it #1}
+}
+\newcommand{\mat}[1]{
+\mathbf{#1}
+}
+\newcommand{\eql}[0]{
+  :=
+}
+\newcommand{\spl}[0]{
+  \sim
+}
+\newcommand{\xor}[0]{
+  \oplus
+}
+\newcommand{\fzand}[0]{
+  \wedge
+}
+\newcommand{\bAnd}[0]{
+  \bigwedge
+}
+\newcommand{\fzor}[0]{
+  \vee
+}
+\newcommand{\bOr}[0]{
+  \bigvee
+}
+
+\newcommand{\fziff}[0]{
+  \leftrightarrow
+}
+
+\newcommand{\fzif}[0]{%
+  \raisebox{0.08cm}{
+      \begin{tikzpicture}
+           \draw[<<->](0,0) -- (0.5,0); %\draw[->] (1,0) -- (1,0);
+      \end{tikzpicture}
+   }
+}
+\newcommand{\diff}[0]{%
+  \raisebox{0.08cm}{
+      \begin{tikzpicture}
+           \draw[<->,dashed](0,0) -- (0.5,0); %\draw[->] (1,0) -- (1,0);
+      \end{tikzpicture}
+   }
+}
+\newcommand{\pr}[1]{
+  \mathsf{#1}
+}
+\newcommand{\subsubsubsection}[1]{
+\noindent 
+\\
+\textbf{#1}
+\\
+}
+\renewcommand{\eqref}[1]{
+  Eq. \ref{#1}%\xspace
+}
+\newcommand{\alref}[1]{
+  Algorithm \ref{#1}
+}
+\newcommand{\fgref}[1]{
+  Figure \ref{#1}%\xspace
+}
+\newcommand{\tbref}[1]{
+  Table \ref{#1}%\xspace
+}
+
+\newcommand{\sref}[1]{
+   \S \ref{#1}%\xspace
+}
+\newcommand{\chapref}[1]{
+  \textbf{Chapter \ref{#1}}%\xspace
+}
+\newcommand{\pmd}[0]{
+  {\it partial-model}%\xspace
+}
+\newcommand{\pmds}[0]{
+  {\it partial-models}%\xspace
+}
+\newcommand{\cmd}[0]{
+  {\it{complete-model}}%\xspace
+}
+\newcommand{\cmds}[0]{
+  {\it complete-models}%\xspace
+}
+\newcommand{\cl}[0]{
+  {\it Confidence rules}%\xspace
+}
+\newcommand{\fzit}[1]{
+  {\it #1}%\xspace
+}
+
+\newcommand{\En}[0]{ % Energy function
+  \fn{E}
+ }
+
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+\begin{document}
+
+\title{On Multi-resident Activity Recognition in Ambient Smart-Homes}
+\subtitle{}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Son N. Tran         \and
+  Qing Zhang \and
+  Mohan Karunanithi \and
+  Son Ngo \and
+  Xuan-Son Vu
+}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{Son N. Tran, Qing Zhang, Mohan Karunanithi \at
+  The Australian E-Health Research Centre, CSIRO, Brisbane, QLD 4029, Australia\\
+              Tel.: +61-7-3253-3636\\
+              \email{\{son.tran,qing.zhang,mohan.karunanithi\}@csiro.au}
+           \and
+           Son Ngo \at
+           Department of Computer Science, FPT University, Vietnam\\
+           \email{\{son.ngo\}@fpt.edu.vn}
+           \and
+           Xuan-Son Vu \at
+           Department of Computing Science, Ume\r{a} University, Sweden\\
+           \email{xuan-son.vu@umu.se}
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+  Increasing attention to the research on activity monitoring in smart
+homes has motivated the employment of ambient intelligence to reduce
+the deployment cost and solve the privacy issue. Several approaches
+have been proposed for multi-resident activity recognition, however,
+there still lacks a comprehensive benchmark for future research and
+practical selection of models. In this paper we study different
+methods for multi-resident activity recognition and evaluate them on
+same sets of data. The experimental results show that recurrent neural
+network with gated recurrent units is better than other models and
+also considerably efficient, and that using combined activities as
+single labels is more effective than represent them as separate
+labels.
+\keywords{Multiresident activity \and Pervasive computing \and Smart homes}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+\end{abstract}
+
+
+\section{Introduction}
+In intelligent environments such as smart homes activity recognition
+plays an important role, especially when applying to health monitoring
+and assistance \cite{Das_2004}. Many efforts has been made to model
+the activities of residents in order to facilitate reasoning of their
+behaviour. The success of such models would result in reducing cost of
+traditional health care, a smarter and safer home for eldercare, and
+better assistance for patients. Classifying human activities has been
+studied intensively within computer vision domain
+\cite{Poppe_2010}. This, however, may raise an issue on privacy of
+residents due to the use of unwelcome devices,
+i.e. cameras. Alternatively, many other approaches rely on wearable
+sensors \cite{Plotz_2011}, which seems less intrusive but require
+users to wear an electronic device everywhere and everytime.  Recent
+attention is aiming at intelligent environments where residents can
+live their own way, without being disturbed by the presence of a
+device on their bodies. This is an important research topic that would
+shape the future of smart homes. With the advance in pervasive sensing
+technologies one can install a set of non-intrusive sensors in the
+environment with respect to residents' privacy
+\cite{Wilson_2005,Singla_2010}. However, in contrast to the
+development of ambient hardware, the reality of intelligent algorithms
+for such modern smart homes is still challenging.
+
+% The challenge of activity recognition: multi-residential, ambient, % Related work
+Activity recognition in ambient environment has been studied for
+years, most of that focuses on single resident, aiming to support
+independent living \cite{vanKasteren_2008}.  However, in practice this
+is not always the case since modern smart environments should be able
+to support multiple occupants. As a result, there is a growing desire
+for a model that is capable of capturing the complexity nature of both
+independent and joint activities. This is a challenging task because
+different from the case of single resident where the sensors' states
+reflect directly the activity of a specific person, in multi-resident
+case that information, as known as {\it data association} is
+not commonly known. In recent work, temporal approaches have been
+widely employed to model activities in smart homes (see the survey
+\cite{Benmansour_2015}). However,
+there still lacks a comprehensive study on how different sequence
+models perform in this application domain.
+
+In this paper we investigate the use of hidden Markov models (HMMs),
+conditional random fields (CRFs), and recurrent neural networks (RNNs)
+for multi-resident activity recognition in ambient smart homes. The
+study also focuses on two different methods of encoding activities of
+multiple residents: combined labels and separate labels.  We expect
+that the work would serve as a benchmark and guideline for those who
+seek for a solution in this domain. In general, we model the activity
+sequences of multiple residents as an input of a function with the
+input is the states of a smart home. Such states in this case are
+defined as the values of the sensors in the smart home. The output can
+be divided into different types of representation. First, we consider
+the output as a single variable which is the combined activities of
+all residents. With this we can apply sequence models such as HMMs,
+CRFs, and RNNs for classification task straightforward. The second
+type of output is encoded by separating it into multiple variables,
+with each presenting the activities of a resident, while sharing the
+same input. In order to deal with multiple residents we need more
+complex models to capture the interactive and collaborative
+behaviours. For HMMs, we employ the factorial variant
+\cite{Ghahramani_1997} add more cross dependencies. In the case CRFs,
+cross dependencies would be computationally expensive especially for
+the data of very long sequences, so that factorial CRFs
+\cite{Sutton_2007} are used. For RNNs, we share the hidden layer for
+all different label variables. In the experiments, we conduct
+evaluations of the models on three smart homes from two benchmark
+datasets. The results show that recurrent neural network with gated
+recurrent units is better than other models and also considerably
+efficient. We also found that using combined labels is more effective
+than separate-labels.
+
+The paper is organised as follows. In the next section we review the
+related literature of our work. Section \ref{sec:mrar} describes the
+multi-activity modelling framework and the models studied in this
+papers. In section \ref{sec:exp} we perform experiments and analyse the
+results. Finally, in Section \ref{sec:concl} we conclude the work.
+
+
+\section{Related Work}
+Research on multi-resident activity recognition has been emerging
+recently due to the increasing demand for health monitoring in ambient
+intelligent environments. The task can be done by employing sequence
+models to perform prediction on the activity events over time. Hidden
+Markov Models \cite{Rabiner_1990} is a popular statistical model for
+sequential data.  It is characterised by the dependency of an
+observation variable on a hidden variable at each time step, and the
+dependency of the hidden variable itself on its previous state. HMMs
+can be employed for activity recognition easily. In particular, one
+can define the observation as the sensors state, i.e. video frame,
+wearable or/and ambient sensors' values, and the hidden variable as
+the activity \cite{Kim_2010}. In multi-resident smart homes, HMMs have
+been studied intensively, as being showed in previous works
+\cite{Alemdar_2013,Chen_2014,Singla_2010,Cook_2012}. A straightforward
+approach is to use a single HMM for combined activities, i.e. treating
+the activities of all residents as a random variable. For example, the
+activities can be combined as joint labels so that they can be
+represented by a single hidden variable \cite{Chen_2014}. Another
+method to model the activities of multiple residents is to create
+multiple HMMs, one for each resident \cite{Chiang_2010}. Such model,
+as known as parallel HMM, has been evaluated in the case that data
+association is provided. This means that the observation has been
+separated for each resident and only represents the sensors which are
+associating to that resident. The disadvantage of this model is the
+hidden variables of all HMMs are independent from each others. In
+multi-resident environments, however, there always exist correlation
+and interaction between the residents. This issue is addressed by
+adding the crossed dependencies to the hidden variables in all
+HMMs. By coupling such HMMs one can assume that the activity of a
+resident is dependent not only on his previous activity but also on
+the previous activities of other residents.  There was a proposal of
+coupled HMM and factorial HMM in computer vision domain
+\cite{Brand_1997}, but only coupled HMM was employed for sensor data
+\cite{Chiang_2010}. Besides HMMs, CRFs \cite{Crandall_2008,Hsu_2010}
+and incremental decision trees (IDT) \cite{Prossegger_2014} also have
+been used for multi-resident activity recognition.
+
+From learning perspective, the problem of multi-resident activity
+recognition can be seen as multi-tasks learning on sequence
+data. However, most of the work we found in literature focus on
+modelling different tasks from different data sources by taking the
+advantage of recurrent neural networks in learning more generalised
+representation from larger amount of data combined. Different from
+that, in this work we do not have such augmentation since there exists
+only one dataset for activities of multiple residents.
+\section{Multi-Resident Activity Modelling}
+\label{sec:mrar}
+Let us denote $a^{m,t}$ and $o^t$ as the activity of resident $m$ and
+the sensors' state at time $t$ respectively. For ease of presentation
+we denote $\vt{a}^t=\{a^{1,t}, a^{2,t}, .. , a^{M,t}\}$ as the
+activities of all $M$ residents at time $t$. We use $t_1:t_2$ to
+denote a sequence of events/states from time $t_1$ to $t_2$. For
+example, $\vt{a}^{t_1:t_2}=\{\vt{a}^{t_1}, .. , \vt{a}^{t_2}\}$ is the
+sequence of activities performed by all residents from time $t_1$ to
+$t_2$. In this paper, we evaluate two ways of modelling the activities of
+multiple residents. First, we combine the activities such that the
+activities of all resident at a time step is represented by a single
+variable. For that we need to predict $\vt{a}^{1:T}$ given the states
+of sensors $\vt{o}^{1:T}$. Second, we model  each resident's
+activity as a separate variable.
+
+\subsection{HMM-based Approaches}
+A HMM \cite{Rabiner_1990} consists of a single hidden  and an
+observation variable  which assumes a Markov process. 
+In the case of combined labels we can use a single HMM to model the activities as a joint distribution as:
+%\vskip -.3cm
+\begin{equation}
+  p(\vt{a}^{1:T},o^{1:T}) = p(o^1|\vt{a}^{1})p(\vt{a}^{1})\prod_{t=2}^Tp(o^t|\vt{a}^{t})p(\vt{a}^{t}|\vt{a}^{t-1})
+\end{equation}
+%\vskip -.3cm
+Inference of activities given a sequence of sensors'
+ states can be done efficiently using dynamic programming,
+ i.e. Viterbi algorithm \cite{Rabiner_1990}. For the separate labels,
+ different HMMs have been used such as parallel HMMs, coupled HMMs
+ \cite{Wang_2011,Son_2017}. In this paper we use factorial HMM with
+ cross dependency shown in Figure \ref{fhmm}, as this variant achieves
+ better performance than the other HMMs \cite{Son_2017}. Factorial HMM
+ \cite{Ghahramani_1997}, is a HMM with multiple hidden variables. In
+ order to represent the relations between activities among residents,
+ we add cross connections from all hidden variables at time $t-1$ to
+ each hidden variable at time $t$. This results in a factorial HMM
+ model with cross dependency as we introduce here in the paper. The
+ joint distribution of this HMM is:
+%\vskip -.3cm
+\begin{equation}
+  p(\vt{a}^{1:T},o^{1:T}) = p(o^1|\vt{a}^{1})\prod_m p(a^{m,1})\prod_{t=2}^T(p(o^t|\vt{a}^{t})\prod_mp(a^{m,t}|\vt{a}^{t-1})) 
+\end{equation}
+%\vskip -.3cm
+Similar to a normal HMM, inference of activities can easily done by dynamic programming. Here, only the transition and the prior probabilities are changed in
+comparison to the HMM above. Therefore, we
+can apply the Viterbi algorithm  by replacing
+$p(\vt{a}^t|\vt{a}^{t-1})$ with $\prod_m p(a^{m,t}|\vt{a}^{t-1})$ and $p(\vt{a}^1)$ with
+$\prod_m p(a^{m,1})$.
+\label{sec:impl}
+\begin{figure}[ht]
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1\textwidth]{ghmm.png}
+    %\vskip -.4cm
+    \caption{hmm}
+    \label{hmm}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1\textwidth]{gcrf.png}
+   % \vskip -.4cm
+    \caption{crf}
+    \label{crf}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1\textwidth]{grnn.png}
+    %\vskip -.3cm
+    \caption{rnn}
+    \label{rnn}
+  \end{subfigure}
+  \\
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1\textwidth]{fhmm_interact.png}
+    %\vskip -.4cm
+    \caption{fhmm}
+    \label{fhmm}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1\textwidth]{fcrf.png}
+    %\vskip -.3cm
+    \caption{fcrf}
+    \label{fcrf}
+\end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1\textwidth]{rnn_mt1.png}
+    %\vskip -.3cm
+    \caption{mrnn}
+    \label{mrnn}
+  \end{subfigure}
+  %\vskip -.3cm
+  \caption{Sequence models for multi-resident activity recognition. hmm: hidden Markov model; crf: conditional random field; rnn: recurrent neural networks; fhmm: factorial hidden markov model (with cross dependencies); fcrf: factorial conditional random field; mrnn: multi-labels recurrent neural networks. The top row depicts the models for combined labels and the bottom row depicts the models for separate labels.}
+  %\vskip -1cm
+\end{figure}
+\subsection{CRF-based Approaches}
+Conditional random field is a probabilistic graphical model which can be used for modelling sequences, similar as HMMs. The difference here is that a CRF is a discriminative model representing a conditional distribution:
+%\vskip -.3cm
+\begin{equation}
+    p(\vt{a}^{1:T}|o^{1:T}) = \frac{1}{Z(o^{1:T})}\prod_{t}\Psi(\vt{a}^t,\vt{a}^{t-1},o^t)
+\end{equation}
+%\vskip -.3cm
+where $\Psi(\vt{a}^t,\vt{a}^{t-1},o^t) = \exp(\sum_k \theta_k
+f_k(o^t,\vt{a}^t,\vt{a}^{t-1}))$ with $f_k$ are the feature functions,
+$\theta_k$ are parameters of the features, and $Z(o^{1:T})$ is the
+partition function:
+%\vskip -.3cm
+\begin{equation}
+Z(o^{1:T}) = \sum_{{\vt{a}'}^{1:T}} \prod_{t}\Psi(o^t,{\vt{a}'}^t,{\vt{a}'}^{t-1})
+\end{equation}
+%\vskip -.3cm
+This is a CRF for combined labels, for the case of separate labels, we
+split the hidden unit to have a variant as known as factorial CRF
+\cite{Sutton_2007}. In Figure \ref{fcrf} we illustrate the graphical
+presentation of this model.
+\subsection{RNN-based Approaches}
+A recurrent neural network is constructed by rolling a feed-forward
+neural network over time where the hidden layer is connected to itself
+by a recurrent weight. As shown in Figure \ref{rnn}, we can use the
+output layer to represent the combine activities of multiple
+residents. For example, at time $t$ the probability of a joint
+activity $\vt{a}^{t}$ is:
+%\vskip -.3cm
+\begin{equation}
+  p(\vt{a}^{t}|o^{1:t}) = \text{softmax}(\vt{h}^{t}U + \vt{b})
+\end{equation}
+%\vskip -.3cm
+where $U$ is the weight matrix connecting the hidden layer and the
+output layer; $\vt{b}$ is the biases of the output units. We will show
+how hidden state $\vt{h}^{t}$ is computed later in this section. For
+the other case where activities of residents are modelled separately
+we can split the output layer into multiple layers, as shown in Figure
+\ref{mrnn}. Let us suppose that there are $M$ residents, the
+probability of a resident $m$ performs an activity $a^{m,t}$ at time t
+is: $p(a^{m,t}) = \text{softmax}(\vt{h}^{t}U_m + \vt{b}_m)$. Here each
+output layer is connected with a shared hidden layer by a weight
+matrix $U_m$. The hidden state in both cases (combined labels and
+separate labels) is computed as $\vt{h}^{t} =\tanh(o^{t}W +
+\vt{h}^{t-1}V+ c)$. This is the simplest form of hidden unit which is
+said not very useful to capture long-term information and suffer the
+problem of vanishing/exploding gradient \cite{Hochreiter_1997}. This
+is also shown that such problems can be ameliorated by using complex
+gates in the hidden units. In this work, we will empirically
+investigate three type of hidden units for RNNs, including the
+original ``tanh'' and two others with more complex gates as known as
+long-short term memory (LSTM) \cite{Hochreiter_1997} and gated
+recurrent units (GRU) \cite{Cho_2014}.
+\section{Experiments}
+\label{sec:exp}
+\subsection{Datasets}
+In the experiments we evaluate the effectiveness of all the models above on three smart homes data in two benchmark datasets. 
+%\subsection{Datasets}
+%\begin{figure}
+%  \centering
+%  \begin{subfigure}{0.5\textwidth}
+%    \vskip 2.2cm \hskip -1cm \includegraphics[width=1.3\textwidth]{../../figs/casas.png}
+%    \caption{CASAS dataset}
+%    \label{fig:casas_layout}
+%  \end{subfigure}
+%  \begin{subfigure}{0.45\textwidth}
+%    \hskip .5cm \includegraphics[width=0.95\textwidth]{../../figs/aras.png}
+%    \caption{ARAS dataset}
+%    \label{fig:aras_layout}
+%  \end{subfigure}
+%  \caption{Layouts of three smart homes in CASAS and ARAS projects}
+%\end{figure}
+The CASAS data was
+ collected in the WSU smart department Testbed with two residents
+ where each resident performing 15 unique activities
+ \cite{Cook_2010}. The data is collected in 26 days in a smart home
+ equipped with 37 ambient sensors. Data in CASAS is presented in ``\textsf{Date Time Sensor\_ID Value Resident\_ID Activity}'' format. For example,  ``\textsf{2008-11-10 14:28:17.986759 M22 ON 2 2}'' shows that resident 2 is hanging up clothes at 14:28:17.986759 on 2008-11-10 when motion sensor M22 is triggered. Similarly, ``\textsf{2008-11-10 14:38:47.974299 M13 OFF 2 8 1 9}'' means at 14:38:47.974299 on 2008-11-10 when motion sensor M13 is off resident 1 is setting dining room table for dinner while resident 2 is setting out ingredients for dinner in the kitchen. This data can be downloaded at \url{http://casas.wsu.edu/datasets/adlmr.zip}.
+ 
+ The ARAS data
+\cite{Alemdar_2013} is collected in two different houses, denoted as
+House A and House B, in 30 days. In these environments, there are 20
+sensors for two residents in each house where each resident is asked to perform 27 different activities. The layouts of two smart homes in this project can be seen at Figure \ref{fig:aras_layout}. The format of ARAS data is presented as: ``\textsf{Sensor\_1 Sensor\_2 .... Sensor\_20   R1\_Activity R2\_Activity}''. This can be seen as a vector of sensors' values and activities of residents. For example, ``0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11 16'' indicates that resident 1 is watching TV and resident 2 is using internet when the force sensor in the couch (sensor 4) and distance sensor in the chair (sensor 6) are triggered. This data is available at \url{http://www.cmpe.boun.edu.tr/aras/}, or it can be reached at \url{https://tinyurl.com/ya6odxcx} in the case the first link is down. 
+
+\begin{figure}[hpt]
+  \centering
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=.95\textwidth]{casas_act_fusion.png}
+    \caption{CASAS}
+    \label{fig:casas_viz}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=0.95\textwidth]{aras_a_acts_fusion.png}
+    \caption{ARAS House A}
+    \label{fig:aras_a_viz}
+  \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+      \includegraphics[width=0.95\textwidth]{aras_b_acts_fusion.png}
+      \caption{ARAS House B}
+      \label{fig:aras_b_viz}
+    \end{subfigure}
+    \caption{Distributions of residents' activities in CASAS, ARAS House A and ARAS House B}
+    \label{fig:act_viz}
+\end{figure}
+
+In order to understand the behaviour of residents we visualise their activities in three environments, as being shown in Figure \ref{fig:act_viz} .  The x and y axes indicate the activities of resident 1 and resident 2 respectively. The hotter color of the cell indicates that the activities of two residents occur more often (see
+  the heat map bar in each figure). In CASAS data, there exist many cases that only individual's activities are labelled, i.e. only activity of one resident is known at a time. Here we use activity ID = 0 to present unknown activity of the other resident.  As we can see in Figure \ref{fig:casas_viz}, there are only 5 cases where two residents perform different activities at the same time. Notably, there is only one case where they are doing the same activity which is cooperative task where a resident retrieves dishes from a kitchen cabinet and resident 2 requests help from resident 1 to identify cabinet in which the dishes are located.
+
+In ARAS house A and ARAS house B the distributions of activities are much less biased than in the CASAS with many different activities have been performed and their occurrences are almost similar. Also, in these environments more cooperative tasks can be seen too, such as ``using internet'', ``sleeping'', ``going out'', ``having dinner'', ``having breakfast'', etc.
+
+\subsection{Evaluation}
+We denote $\hat{\vt{a}}^{1:T}$ with $\hat{a}^{i}=\{\hat{a}^{1,t},
+\hat{a}^{2,t}, ..., \hat{a}^{M,t}\}$ as the predicted activities of
+all residents in the house for each instance in the test set
+$\mathcal{D}_{test}$. We also denote a ground truth is
+$\vt{a}^{1:T}$. The performance of a model is measured by the accuracy
+of each resident's activities and the accuracy of all residents'
+activities. The former is computed as:
+%\vskip -.3cm
+\begin{equation}
+  accuracy_m = \frac{1}{|D_{test}|}\sum_{a^{m,1:T} \in \mathcal{D}_{test}}\frac{1}{T} \sum_t(a^{m,t}==\hat{a}^{m,t})
+\end{equation}
+%\vskip -.3cm
+where $a^{m,t}$ and $\hat{a}^{m,t}$ are ground truth and predicted activity of resident $m$ at time $t$ in each instance of the test set $\mathcal{D}_{test}$. Similarly, the accuracy for activities of all residents is:
+%\vskip -.3cm
+\begin{equation}
+  accuracy_{all} = \frac{1}{|D_{test}|}\sum_{\vt{a}^{1:T} \in \mathcal{D}_{test}}\frac{1}{T} \sum_t(\vt{a}^{t}==\hat{\vt{a}}^{t})
+\end{equation}
+%\vskip -.3cm
+\subsection{Results}
+\label{sec:results}
+We partition the CASAS data into $24$ days for training, $1$ day for validation and $1$ day for testing. The ARASA and ARASB are the data from ARAS House A and ARAS House B each consist of $7$ days for training, $2$ days for validation and $2$ days for testing.
+
+\begin{table}[ht]
+	\vskip -.5cm
+	\begin{center}
+		{\scriptsize
+			\begin{tabular}{|l||c|c|c||c|c|c||c|c|c||c|}
+				\hline
+				\hline
+				{}& \multicolumn{3}{|c||}{CASAS}& \multicolumn{3}{|c||}{ARAS House-A}& \multicolumn{3}{|c||}{ARAS House-B} & Avg.\\
+				\hline
+				&R1 & R2 & All & R1 & R2 & All & R1 & R2 & All& \\
+				%    & CASAS & ARAS\_HouseA & ARAS\_HouseB\\
+				\hline
+				\hline
+				R$_t$  & 66.62  & 64.88  & 58.08 & 67.02  & 73.09  & 53.07 & 81.09  & 78.16  & 76.15            & 68.68\\
+				\hline
+				mR$_t$ & 69.14  & 60.61  & 47.94 & 68.12  & 74.74  & 53.26 & 91.93  & 78.99  & 76.86            & 69.06\\
+				\hline
+				R$_g$  & 92.26  & 87.68  & 83.66 & 69.79  & 74.20  & 56.23 & 81.69  & 78.95  & 76.83            & \textbf{77.92}\\
+				\hline
+				mR$_g$ & 90.89  & 83.97  & 77.91 & 70.03  & 75.37  & 56.65 & 82.04  & 78.90  & 76.83            & 76.95\\
+				\hline
+				R$_l$ & 89.40  & 87.45  & 82.14 & 69.94  & 73.59  & 56.44 & 82.15  & 77.84  & 76.72            & 77.29\\
+				\hline
+				mR$_l$& 69.05  & 84.30  & 77.49 & 69.97  & 75.39  & 56.25 & 81.66  & 78.92  & 76.60            & 74.40\\
+				\hline
+				H  & 65.24  & 65.82  & 56.58 & 43.95  & 54.93  & 19.13 & 79.29  & 76.98  & 75.07            & 59.67\\
+				\hline
+				fH & 73.55  & 67.44  & 55.43 & 44.19  & 54.58 & 19.13 & 79.17   & 77.10 & 75.07             & 60.63\\
+				\hline
+				C  & 76.40  & 66.07  & 64.32 & 70.73  & 78.17  & 61.72 & 88.36  & 89.27  & 76.23            & 74.58\\
+				\hline
+				fC & 58.21  & 56.76  & 45.84 & 69.50  & 69.50  & 55.95 & 76.01  & 76.01  & 74.44            & 64.69\\
+				\hline
+				\hline				
+				\multicolumn{11}{l}{R$_{t}$ is for RNN$_{tanh}$: recurrent neural network with tanh units}  \\ 
+				\multicolumn{11}{l}{mR$_t$ is for mRNN$_{tanh}$: multi-labels recurrent neural network with tanh units}\\
+				\multicolumn{11}{l}{R$_g$ is for RNN$_{gru}$: recurrent neural network with gated recurrent units} \\
+				\multicolumn{11}{l}{mR$_g$ is for mRNN$_{gru}$: multi-labels recurrent neural network with gated units}\\
+				\multicolumn{11}{l}{R$_l$ is for RNN$_{lstm}$: recurrent neural network with long short term memory}\\
+				\multicolumn{11}{l}{mR$_l$ is for mRNN$_{lstm}$: multi-labels recurrent neural network with long short term memory}\\
+				\multicolumn{11}{l}{H is for HMM: hidden Markov models}\\
+				\multicolumn{11}{l}{fH is for fHMM: factorial hidden Markov model}\\
+				\multicolumn{11}{l}{C is for CRF: conditional random fields}\\
+				\multicolumn{11}{l}{fC is for fCRF: factorial conditional random field with cross dependencies}\\
+				\hline
+			\end{tabular}
+		}
+	\end{center}
+	\vskip -.4cm
+	\caption{Prediction accuracy for all models on three datasets. R1, R2, All are accuracy of predicted activities of resident 1, resident 2 and the joint activities.}
+	\label{tab:all_results}
+	%\vskip -1cm
+\end{table}
+
+
+\begin{comment}
+\begin{table}[ht]
+ \vskip -.5cm
+ \begin{center}
+   {\scriptsize
+  \begin{tabular}{|l||c|c|c||c|c|c||c|c|c||c|}
+    \hline
+    \hline
+        {}& \multicolumn{3}{|c||}{CASAS}& \multicolumn{3}{|c||}{ARAS House-A}& \multicolumn{3}{|c||}{ARAS House-B} & avg.\\
+    \hline
+    &R1 & R2 & All & R1 & R2 & All & R1 & R2 & All& \\
+%    & CASAS & ARAS\_HouseA & ARAS\_HouseB\\
+    \hline
+    \hline
+    R$_t$  & 66.62  & 64.88  & 58.08 & 67.02  & 73.09  & 53.07 & 81.09  & 78.16  & 76.15            & 68.68\\
+    \hline
+    mR$_t$ & 69.14  & 60.61  & 47.94 & 68.12  & 74.74  & 53.26 & 91.93  & 78.99  & 76.86            & 69.06\\
+    \hline
+    R$_g$  & 92.26  & 87.68  & 83.66 & 69.79  & 74.20  & 56.23 & 81.69  & 78.95  & 76.83            & \textbf{77.92}\\
+    \hline
+    mR$_g$ & 90.89  & 83.97  & 77.91 & 70.03  & 75.37  & 56.65 & 82.04  & 78.90  & 76.83            & 76.95\\
+    \hline
+    R$_l$ & 89.40  & 87.45  & 82.14 & 69.94  & 73.59  & 56.44 & 82.15  & 77.84  & 76.72            & 77.29\\
+    \hline
+    mR$_l$& 69.05  & 84.30  & 77.49 & 69.97  & 75.39  & 56.25 & 81.66  & 78.92  & 76.60            & 74.40\\
+    \hline
+    H  & 65.24  & 65.82  & 56.58 & 43.95  & 54.93  & 19.13 & 79.29  & 76.98  & 75.07            & 59.67\\
+    \hline
+    fH & 73.55  & 67.44  & 55.43 & 44.19  & 54.58 & 19.13 & 79.17   & 77.10 & 75.07             & 60.63\\
+    \hline
+    C  & 76.40  & 66.07  & 64.32 & 70.73  & 78.17  & 61.72 & 88.36  & 89.27  & 76.23            & 74.58\\
+    \hline
+    fC & 58.21  & 56.76  & 45.84 & 69.50  & 69.50  & 55.95 & 76.01  & 76.01  & 74.44            & 64.69\\
+    \hline
+    \hline
+  \end{tabular}
+  }
+  \end{center}
+  %\vskip -.3cm
+  \caption{Prediction accuracy for all models on three datasets. R1, R2, All are accuracy of predicted activities of resident 1, resident 2 and the joint activities. Here, R$_{t}$ is for RNN$_{tanh}$: recurrent neural network with tanh units; mR$_t$ is for mRNN$_{tanh}$: multi-labels recurrent neural network with tanh units; R$_g$ is for RNN$_{gru}$: recurrent neural network with gated recurrent units; mR$_g$ is for mRNN$_{gru}$: multi-labels recurrent neural network with gated units; R$_l$ is for RNN$_{lstm}$: recurrent neural network with long short term memory; mR$_l$ is for mRNN$_{lstm}$: multi-labels recurrent neural network with long short term memory; H is for HMM: hidden Markov models; fH is for fHMM: factorial hidden Markov model; C is for CRF: conditional random fields; fC is for fCRF: factorial conditional random field with cross dependencies.}
+  \label{tab:all_results}
+  %\vskip -1cm
+\end{table}
+\end{comment}
+
+The models are selected as follows. For HMM and fHMM we selected the best models based on the Laplacian smoothing factor. The smoothing factor is chosen from $10^{-6}$ to $10^{-2}$ in log-space. For the CRFs, we do not use any hyper-parameters and set the maximum iteration is $1000$. We use MALLET to implement fCRFs and set the penalty hyper-parameters to zeros. For the recurrent neural networks, we perform model selection by using grid-like search on number of hidden units within $\{10,50,100,500,1000\}$, and learning rate from $0.0001$ to $1$ in log-space. If the optima is not apparent we expand the search. The RNNs are trained using stochastic gradient descent with early stopping. Due to the need for initialisation of the RNN models we repeat each experiment on recurrent neural networks $50$ times and report the average results. We denote RNN and mRNN are recurrent neural networks for combined labels and separate labels respectively. We also use subcripts $tanh$, $gru$, $lstm$ to denote the type of hidden units in RNNs.
+
+Table \ref{tab:all_results} shows the results of all models on three
+datasets. In CASAS data, RNN$_{gru}$ outperforms other models. In
+ARASA, HMM based models have very low performance. It seems that the
+simplicity of HMM cannot capture the complexity of this data as we
+learn that the number of observed sensors' values in ARASA is 10 times
+more than CASAS and 3 times more than ARASB. In this dataset, CRF has
+the highest accuracy. In ARASB most of the models have similar
+performance with fCRF achieves the lowest accuracy of $74.44\%$ and
+mRNN$_{tanh}$ achieves the highest accuracy of $76.86\%$. We observe
+that RNNs with complex gates (GRU and LSTM) seem to overfit the
+training and validation sets since they have much more paprameters
+than RNN with tanh units. In the ``Average'' column are the mean
+accuracy of individual activities and the joint activities in all
+datasets. We can see that among all models, RNN$_{gru}$ achieves the
+best performance overall. This is because, the small size of the
+experimental data makes the compactness of RNN$_{gru}$ advantageous
+over RNN$_{lstm}$ which has larger number of parameters.
+\subsection{Combined labels versus Separate labels}
+
+\begin{figure}[ht]
+  \centering
+  %\vskip -.7cm
+  \includegraphics[width=1\textwidth]{labels_analyse.png}
+  %\vskip -.3cm
+    \caption{Combined labels v.s separate labels for multi-resident activity recognition}
+    \label{fig:combined_vs_separate}
+  %  \vskip -.7cm
+\end{figure}
+We now analyse the effectiveness of combined labels v.s. separate labels. We compute the average accuracy of all models that use combined labels approach on each data and compare it with the separate labels approach. The results are demonstrated in Figure \ref{fig:combined_vs_separate}. It is consistent that models with combined labels have better prediction accuracy than models with separate labels. An interesting finding from the results here is that the combined label approaches not only have higher  accuracy for joint activities but also outperform the separate label approach in predicting individual activities.
+
+
+\subsection{Compare with other methods}
+\label{subsec:compare}
+For CASAS dataset, Hsu et. al  \cite{Hsu_2010} and Chiang et. al \cite{Chiang_2010} achieve $64.16\%$ and  $61.78$ respectively, using leave-one-out cross validation. Another work by Singla et. al achieves $60.60$ using three-fold cross-validation \cite{Singla_2010}. Among our studied models we select HMM with combined labels for comparison. Here leave-one-out cross-validation is used and the HMM outperforms the approaches in \cite{Hsu_2010} and \cite{Chiang_2010} with  $69.127\%$ accuracy.
+
+For the ARAS, although the dataset consists of 27 unique activities may works group the activities into smaller set of classes for evaluation. For example, in \cite{Alemdar_2013} the activities are grouped into 6 classes, and in \cite{Tuncan_2014} they are grouped into 7 classes. For comparison, we train the best model in our study, the RNN with gated unit, and evaluate it using leave-one-out cross-validation as what has been done in \cite{Alemdar_2013} and \cite{Tucan_2014} which achieves $xxx\%$. We also compare this RNN with another approach called  iterative decistion tree (IDT) \cite{Prossegger_2014} using days 1-7 for training and days 22-28 for testing. The RNN achieves  compared to $48.36\%$ for house A, $64.19\%$ for house B  in \cite{Prossegger_2014}.
+\subsection{Efficiency}
+Finally, we analyse the efficiency of the models in this application. Theoretically, the combined labels may need more parameters than the separate labels as the former require variables to represent $K^1\times K^2 ... K^M$ activities while the latter use $M$ variables each represent $K^m$ activity values. However, this might be different in practice where smaller combined label model may have better results than bigger separate-label models. It would depends on how models are selected by validation sets. In Table \ref{tab:time} we report the running time of the models which give the best results in section \ref{sec:results}. The most effective model is HMM which only needs less than one minute to complete the training and prediction for any of the three datasets. fHMM is slightly less efficient than HMM. However, it should be noted that both HMM and fHMM are the least effective models in Table \ref{tab:all_results}. fCRF is the slowest model among the others. Although the Java implementation of MALLET might be the reason of this inefficiency  the prediction performance of fCRF is only better than HMM and fHMM. So the use of this model in practice should be questioned, especially when its results are even lower than CRF.
+%\vskip -.5cm
+\begin{table}[h]
+  \begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \hline
+        {\backslashbox{Model}{Data}}& {CASAS}&{ARAS House-A}& {ARAS House-B}&{Avg.}\\
+    \hline
+    \hline
+    \hline
+    RNN  & 96.23  sec  & 3064.50 sec  & 3547.74 sec & 2236.16 sec \\
+    \hline
+    mRNN & 406.31 sec  & 3.39 hrs     & 3.44 hrs & 20331.44 sec \\
+    \hline
+    GRU  & 203.58 sec  & 1.31 hrs     & 1.43 hrs & 3355.85 sec \\
+    \hline
+    mGRU & 545.39 sec  & 1.47 hrs     & 1.38 hrs & 1 hrs \\
+    \hline
+    LSTM & 183.64  sec & 7.87 hrs     & 8.61 hrs & 5.51 hrs \\
+    \hline
+    mLSTM& 638.35  sec & 6.54 hrs     & 1.71 hrs & 2.81 hrs \\
+    \hline
+    HMM  & 0.17 sec    & 95.23 sec    & 50.74 sec & 48.71 sec\\
+    \hline
+    fHMM & 0.23 sec    & 97.52 sec    & 50.77 sec & 49.51 sec \\
+    \hline
+    CRF  & 64.32 sec   &  $\sim$8 hrs & 289.17 sec & 2.70 hrs\\
+    \hline
+    fCRF & 3.6 hrs     & $\sim$419 hrs& $\sim$220 hrs & 214.2 hrs\\
+    \hline
+    \hline
+  \end{tabular}
+  \end{center}
+  %\vskip -.3cm
+  \caption{(Average) Computational time for best models in section \ref{sec:results} to train and predict activities in three datasets. We denote the time in hours (hrs) if it is more than 3600 seconds otherwise we denote it in seconds (sec).}
+  \label{tab:time}
+  %\vskip -1cm
+\end{table}
+Overall, among all models, RNN$_{gru}$ would be the best choice since it has the best performance while being considerably efficient. It is not as fast as RNN$_{tanh}$ but it is quicker than the other RNN based models in most cases. Especially, it outperform HMM based models and fCRF models with large margin. CRF is also a good choice since its best models  are even faster than RNN$_{gru}$ in CASAS and ARASB. However, in these two datasets it has lower accuracy than RNN$_{gru}$ while in ARASA it is much slower than RNN$_{gru}$.
+
+%SVX:
+\section{Discussion}
+Multi-resident activity recognition using ambient sensors is an important topic since it can reduce deployment cost and solve the privacy issue. Based on the complexity of 3 datasets (i.e., CASAS, ARASB, ARASA), we have some remarks related to the performance according to the complexity of dataset as following:
+
+\begin{itemize}
+\item Simple model, such as HMM model, did not perform well on a complex dataset (i.e., ARASA) but got adequate performance on the simple dataset (i.e., CASAS). Additionally, due to the simplicity of the model, computation time of HMM is shortest among all methods. Thus, HMM seems to be suitable to use in a place where prediction time is critical while does not have complex environments (e.g., fewer residents and less activities such as in senior house to detect regular/danger situations).
+\item CRF model is generally a good option to be balanced between accuracy and computational time. In fact, CRF got the best performance on the less complex dataset (i.e., ARASB).
+\item Recurrent neural network model with gated recurrent unit (i.e., GRU) got the best performance in a complex dataset (i.e., ARASA), therefore, it is suitable to be applied in complex environments where many individuals are available with multiple activities. However, due to the complexity of the model, it requires more computational power and hence, might be suitable to be deployed in a well-equipped environment with high requirement on accuracy (e.g., hospital or office complex).
+
+\item Data association is one of the most important issue in multi-resident activity recognition which is about relating each resident with the sensors he or she interacts with. Previous approaches introduce additional a hidden variable to represent data association and  \cite{Wilson_2005,Hsu_2010}. Although it helps improve the activity recognition performance there is no ground-truths to validate the accuracy of that data association. Moreover, modelling data association as a hidden variable is risky as it has been shown that low accuracy of data association prediction can negatively affect the performance of activity recognition \cite{Hsu_2010}. In this work we focus on modelling temporal dependencies of residents' activities instead of data association and showed in \ref{subsec:compare} that even with simple HMMs we can achieve better performance than iterative method predicting both data association and activities in CASAS dataset \cite{Hsu_2010}. However, the idea of learning data association at the same time with activities is promising and we would like to investigate further in future work. 
+\end{itemize}
+
+Based on the above discussion, we hope that our remarks are useful for the future application to choose between different models based on their characteristics. It is also noted that, since we do not have more complex datasets, therefore, we cannot verify whether more complex models such as LSTM will be suitable to be applied because it got overfit in our datasets.
+%End of modification from SVX
+
+\section{Conclusions}
+We have presented a benchmark study on activity recognition for multi-resident smart homes with ambient sensors. We empirically show that recurrent neural network with gated recurrent units is better than other models and also considerably efficient. We also show that using combined activities as single labels is more effective than represent them as separate labels.
+\label{sec:concl}
+\bibliographystyle{spmpsci}
+\bibliography{bibio}
+
+%\begin{acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+%\end{acknowledgements}
+
+% BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+%\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+%\bibliography{}   % name your BibTeX data base
+
+% Non-BibTeX users please use
+%\begin{thebibliography}{}
+%
+% and use \bibitem to create references. Consult the Instructions
+% for authors for reference list style.
+%
+%\bibitem{RefJ}
+% Format for Journal Reference
+%Author, Article title, Journal, Volume, page numbers (year)
+% Format for books
+%\bibitem{RefB}
+%Author, Book title, page numbers. Publisher, place (year)
+% etc
+%\end{thebibliography}
+
+\end{document}
+% end of file template.tex
+
